@@ -156,11 +156,44 @@ class Solution {
 思路：数组完成排序后，我们可以放置两个指针 ii 和 jj，其中 ii 是慢指针，而 jj 是快指针。只要 nums[i] = nums[j]nums[i]=nums[j]，我们就增加 jj 以跳过重复项。
 
 当我们遇到 nums[j] \neq nums[i]nums[j] 
-
-​	
+
  =nums[i] 时，跳过重复项的运行已经结束，因此我们必须把它（nums[j]nums[j]）的值复制到 nums[i + 1]nums[i+1]。然后递增 ii，接着我们将再次重复相同的过程，直到 jj 到达数组的末尾为止。
 
-作者：LeetCode
-链接：https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/solution/shan-chu-pai-xu-shu-zu-zhong-de-zhong-fu-xiang-by-/
-来源：力扣（LeetCode）
 
+
+5、 判断子序列
+给定字符串 s 和 t ，判断 s 是否为 t 的子序列。
+
+你可以认为 s 和 t 中仅包含英文小写字母。字符串 t 可能会很长（长度 ~= 500,000），而 s 是个短字符串（长度 <=100）。
+
+字符串的一个子序列是原始字符串删除一些（也可以不删除）字符而不改变剩余字符相对位置形成的新字符串。（例如，"ace"是"abcde"的一个子序列，而"aec"不是）。
+
+示例 1:
+s = "abc", t = "ahbgdc"
+
+返回 true.
+
+示例 2:
+s = "axc", t = "ahbgdc"
+
+返回 false.
+
+链接：https://leetcode-cn.com/problems/is-subsequence
+
+class Solution {
+    public boolean isSubsequence(String s, String t) {
+        int n = s.length();
+        int m = t.length();
+        int i=0,j=0;
+        /*采用双指针，i指向s,j指向t,因为(String)s中的字符要在(String)t中找到，而且(String)s中的字符在(String)t中的相对位置不变
+        ，所以逐个匹配，匹配成功则指针同时右移，否则移j,如果i能移到末尾，说明匹配成功
+        */
+        while(i<n && j<m){
+            if(s.charAt(i)==t.charAt(j)){
+                i++;
+            }
+            j++;
+        }
+        return i==n;
+    }
+}
