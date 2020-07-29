@@ -197,3 +197,5 @@ class Solution {
         return i==n;
     }
 }
+
+6、
